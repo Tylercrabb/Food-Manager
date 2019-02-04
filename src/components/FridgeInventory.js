@@ -4,13 +4,11 @@ import {fetchFridgeInventory} from '../actions/'
 
  class FridgeInventory extends Component{
     componentDidMount(){
-        this.props.dispatch(fetchFridgeInventory())
-        
+        this.props.dispatch(fetchFridgeInventory())  
     }
 
 
     render() {
-
         let lists = this.props.fridgeInventory.map(item => {
             return <li key={item.id}>{item.itemName}{item.expirationDate}</li>
         });
@@ -20,7 +18,7 @@ import {fetchFridgeInventory} from '../actions/'
 }
 
 const mapStateToProps = state => ({
-    fridgeInventory:state.fridgeInventory
+    fridgeInventory:state.fridge.fridgeInventory
 })
 
 export default connect(mapStateToProps)(FridgeInventory);

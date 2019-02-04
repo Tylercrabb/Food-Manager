@@ -18,3 +18,25 @@ export const fetchFridgeInventory = () => dispatch => {
             
         });
     }
+
+export const FETCH_PANTRY_SUCCESS = 'FETCH_PANTRY_SUCCESS';
+
+export const fetchPantrySuccess = items => ({
+    type: FETCH_PANTRY_SUCCESS,
+    items
+});
+
+export const fetchPantryInventory = () => dispatch => {
+    fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`)
+        .then(res => {
+            if (!res.ok) {
+                return Promise.reject(res.statusText);
+            }
+            return res.json();
+        })
+        .then(items => {
+            dispatch(fetchPantrySuccess(items));
+            
+        });
+    }
+
