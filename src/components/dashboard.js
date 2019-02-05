@@ -13,6 +13,7 @@ import requiresLogin from './requires-login'
 class Dashboard extends Component {
   render() {
     return (
+      <Router>
       <div className="Dashboard">
         <header className="App-header">
         <Link to="/fridge"><img src={fridge} className="App-logo" alt="logo" /></Link>
@@ -21,12 +22,12 @@ class Dashboard extends Component {
         <Link to="/dashboard"><button>Home</button></Link>
         </header>
         <main>
-        <FridgeInventory />
-        <Route exact path='/pantry' component={PantryInventory}/>
-        <AddForm />
-        
+        <Route  path='/fridge' component={FridgeInventory}/>
+        <Route  path='/pantry' component={PantryInventory}/>
+        <Route  path ='/add' component={AddForm} />
       </main>
       </div>
+      </Router>
     );
   }
 }
