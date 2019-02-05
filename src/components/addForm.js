@@ -53,7 +53,7 @@ export class AddForm extends React.Component {
                     })
                 );
             });
-    }else if(this.state.addingTo === 'pantry'){return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
+    } else if(this.state.addingTo === 'pantry'){return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
         method: 'POST',
         body: JSON.stringify(values),
         headers: {
