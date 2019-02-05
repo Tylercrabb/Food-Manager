@@ -9,12 +9,14 @@ export class AddForm extends React.Component {
         addingTo: 'fridge'
     }
     onSubmit(values) {
-        if(this.state.addingTo === 'fridge')
-        {return fetch('https://fridgeapp-backend.herokuapp.com/api/item', {
+        if(this.state.addingTo === 'fridge'){
+            const authToken = this.props.authToken;
+        return fetch('https://fridgeapp-backend.herokuapp.com/api/item', {
             method: 'POST',
             body: JSON.stringify(values),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.props.authToken}`
             }
         })
             .then(res => {
@@ -53,11 +55,13 @@ export class AddForm extends React.Component {
                     })
                 );
             });
-    } else if(this.state.addingTo === 'pantry'){return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
+    } else if(this.state.addingTo === 'pantry'){
+        return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
         method: 'POST',
         body: JSON.stringify(values),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+             Authorization: `Bearer ${this.props.authToken}`
         }
     })
         .then(res => {
@@ -143,13 +147,14 @@ export class AddForm extends React.Component {
                 className ='blank'
                 onClick={e =>{
                     e.preventDefault()
-                    
+                    console.log(this.props.authToken)
                    this.onFridgeClick(e)
                 }}
                 >Fridge</button>
                 <button
                 onClick={e => {
                     e.preventDefault()
+                    
                     this.onPantryClick(e)
                 }}
                 >
@@ -178,6 +183,12 @@ export class AddForm extends React.Component {
         );
     }
 }
+ const mapStateToProps = state => ({
+     authToken: state.auth.authToken
+     
+ })
+
+AddForm = connect(mapStateToProps)(AddForm);
 
 export default reduxForm({
     form: 'add',

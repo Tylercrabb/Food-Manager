@@ -5,8 +5,16 @@ export const fetchFridgeSuccess = items => ({
     items
 });
 
-export const fetchFridgeInventory = () => dispatch => {
-    fetch(`https://fridgeapp-backend.herokuapp.com/api/item`)
+export const fetchFridgeInventory = () => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    return fetch(`https://fridgeapp-backend.herokuapp.com/api/item`,{
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+
         .then(res => {
             if (!res.ok) {
                 return Promise.reject(res.statusText);
@@ -26,8 +34,15 @@ export const fetchPantrySuccess = items => ({
     items
 });
 
-export const fetchPantryInventory = () => dispatch => {
-    fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`)
+export const fetchPantryInventory = () => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
         .then(res => {
             if (!res.ok) {
                 return Promise.reject(res.statusText);

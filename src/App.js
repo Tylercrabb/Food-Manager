@@ -1,31 +1,61 @@
 import React, { Component } from 'react';
-import FridgeInventory from './components/FridgeInventory'
-import PantryInventory from './components/PantryInventory'
-import fridge from './images/fridge.png';
-import pantry from './images/pantry.png'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import AddForm from './components/addForm';
-import './app.css'
+import {connect} from 'react-redux';
+import {BrowserRouter as Router, Route, Link, withRouter} from 'react-router-dom';
 
+import './app.css'
+import Dashboard from './components/dashboard'
+import HeaderBar from './components/header-bar';
+import LandingPage from './components/landing-page'
+import RegistrationPage from './components/registration-page'
+import {refreshAuthToken} from './actions/auth';
+import { AddForm } from './components/addForm';
 
 class App extends Component {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.loggedIn && this.props.loggedIn) {
+        // When we are logged in, refresh the auth token periodically
+        this.startPeriodicRefresh();
+    } else if (prevProps.loggedIn && !this.props.loggedIn) {
+        // Stop refreshing when we log out
+        this.stopPeriodicRefresh();
+    }
+}
+
+componentWillUnmount() {
+  this.stopPeriodicRefresh();
+}
+
+startPeriodicRefresh() {
+  this.refreshInterval = setInterval(
+      () => this.props.dispatch(refreshAuthToken()),
+      60 * 60 * 1000 // One hour
+  );
+}
+
+stopPeriodicRefresh() {
+  if (!this.refreshInterval) {
+      return;
+  }
+
+  clearInterval(this.refreshInterval);
+}
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        <Link to="/fridge"><img src={fridge} className="App-logo" alt="logo" /></Link>
-        <Link to ="/pantry"><img src={pantry} className="App-logo" alt="logo" /></Link>
-        <Link to="/add"><button>add an item</button></Link>
-        <Link to="/"><button>Home</button></Link>
-        </header>
-        <main>
-        <Route exact path="/fridge" component={FridgeInventory}/>
-        <Route exact path='/pantry' component={PantryInventory}/>
-        <Route exact path="/add" component={AddForm}/>
-      </main>
-      </div>
+    <div className="app">
+                <HeaderBar />
+                <Route exact path="/" component={LandingPage} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/register" component={RegistrationPage} />
+            </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.currentUser !== null
+});
+
+// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+export default withRouter(connect(mapStateToProps)(App));
