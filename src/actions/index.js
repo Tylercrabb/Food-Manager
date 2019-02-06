@@ -1,3 +1,5 @@
+ import {API_KEY} from '../config'
+ 
 export const FETCH_FRIDGE_SUCCESS = 'FETCH_FRIDGE_SUCCESS';
 
 export const fetchFridgeSuccess = items => ({
@@ -112,3 +114,43 @@ export const deleteFridgeItemSuccess = items => ({
             })
         }
 
+export const GET_RECIPES_SUCCESS = 'GET_RECIPES_SUCCESS';
+
+export const getRecipeSuccess = results => ({
+    type: GET_RECIPES_SUCCESS,
+    results
+});
+
+    export const getRecipes = () => (dispatch, getState) => {
+        function getNames(arr){
+            let results = [];
+            for(let i = 0; i < arr.length; i++){
+                results.push(arr[i].itemName)
+            }return results
+        }
+        let fridgeInvNames = getNames(getState().food.fridgeInventory) 
+        let pantryInvNames = getNames(getState().food.pantryInventory) 
+        let totalInv = fridgeInvNames.concat(pantryInvNames);
+        let query = totalInv.join('%2C');
+        
+       return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=${query}`, {
+            method: 'GET',
+            
+            headers: {
+                'X-RapidAPI-Key': API_KEY
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return Promise.reject(res.statusText);
+                }
+                return res.json()
+            })
+            .then( results => {
+                dispatch(getRecipeSuccess(results))
+            })
+        }
+
+            
+        
+           

@@ -11,7 +11,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store =  createStore(
     combineReducers({
         form: formReducer,
-        fridge:fridgeReducer,
+        food:fridgeReducer,
         auth: authReducer
     })
     , composeEnhancers(applyMiddleware(thunk)));

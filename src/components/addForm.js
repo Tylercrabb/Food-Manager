@@ -147,7 +147,6 @@ export class AddForm extends React.Component {
                 className ='blank'
                 onClick={e =>{
                     e.preventDefault()
-                    console.log(this.props.authToken)
                    this.onFridgeClick(e)
                 }}
                 >Fridge</button>

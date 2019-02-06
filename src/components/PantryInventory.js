@@ -27,7 +27,7 @@ import {fetchPantryInventory, deletePantryItem} from '../actions/'
 }
 
 const mapStateToProps = state => ({
-    PantryInventory:state.fridge.pantryInventory
+    PantryInventory:state.food.pantryInventory
 })
 
 export default connect(mapStateToProps)(PantryInventory);
