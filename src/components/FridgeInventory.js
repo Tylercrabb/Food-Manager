@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchFridgeInventory} from '../actions/'
+import {fetchFridgeInventory, deleteFridgeItem} from '../actions/'
 
  class FridgeInventory extends Component{
     componentDidMount(){
@@ -9,11 +9,20 @@ import {fetchFridgeInventory} from '../actions/'
 
 
     render() {
-        let lists = this.props.fridgeInventory.map(item => {
-            return <li key={item.id}>{item.itemName}{item.expirationDate}</li>
+        let lists = this.props.fridgeInventory.map((item,index) => {
+            return (<div>
+                <li key={item.id}>{item.itemName}{item.expirationDate}</li>
+                <button 
+                key={index}
+                onClick={e => {
+                    this.props.dispatch(deleteFridgeItem(item))
+                    // .then(() => this.props.dispatch(fetchFridgeInventory()))
+                }}
+                >Delete</button>
+                </div>)
         });
         return (
-        <h1><ul>{lists}</ul></h1>
+        <p><ul>{lists}</ul></p>
     )}
 }
 

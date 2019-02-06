@@ -36,7 +36,7 @@ export const fetchPantrySuccess = items => ({
 
 export const fetchPantryInventory = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`, {
+    return fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials
@@ -47,11 +47,68 @@ export const fetchPantryInventory = () => (dispatch, getState) => {
             if (!res.ok) {
                 return Promise.reject(res.statusText);
             }
-            return res.json();
+        return res.json()
         })
         .then(items => {
             dispatch(fetchPantrySuccess(items));
             
         });
     }
+
+export const DELETE_PANTRY_ITEM_SUCCESS = 'DELETE_PANTRY_ITEM_SUCCESS';
+
+export const deletePantryItemSuccess = items => ({
+    type: DELETE_PANTRY_ITEM_SUCCESS,
+    items
+});
+
+    export const deletePantryItem = (item) => (dispatch, getState) => {
+        const authToken = getState().auth.authToken;
+        
+        return fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry/${item.id}`, {
+            method: 'DELETE',
+            headers: {
+                // Provide our auth token as credentials
+                Authorization: `Bearer ${authToken}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return Promise.reject(res.statusText);
+                }
+                return res
+            })
+            .then( ()=> {
+                dispatch(deletePantryItemSuccess(item.id));
+            })
+        }
+        
+
+export const DELETE_FRIDGE_ITEM_SUCCESS = 'DELETE_FRIDGE_ITEM_SUCCESS';
+
+export const deleteFridgeItemSuccess = items => ({
+    type: DELETE_FRIDGE_ITEM_SUCCESS,
+    items
+});
+
+    export const deleteFridgeItem = (item) => (dispatch, getState) => {
+        const authToken = getState().auth.authToken;
+        
+       return fetch(`https://fridgeapp-backend.herokuapp.com/api/item/${item.id}`, {
+            method: 'DELETE',
+            headers: {
+                // Provide our auth token as credentials
+                Authorization: `Bearer ${authToken}`
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return Promise.reject(res.statusText);
+                }
+                
+            })
+            .then( ()=> {
+                dispatch(deleteFridgeItemSuccess(item.id));
+            })
+        }
 

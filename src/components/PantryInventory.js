@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchPantryInventory} from '../actions/'
+import {fetchPantryInventory, deletePantryItem} from '../actions/'
 
  class PantryInventory extends Component{
     componentDidMount(){
         this.props.dispatch(fetchPantryInventory())
-        console.log(this.props)
     }
 
 
     render() {
-        console.log(this.props)
-        let lists = this.props.PantryInventory.map(item => {
-            return <li key={item.id}>{item.itemName}{item.expirationDate}</li>
+        let lists = this.props.PantryInventory.map((item, index) => {
+            return (<div>
+                <li key={item.id}>{item.itemName}{item.expirationDate}</li>
+                <button 
+                key={index}
+                onClick={e => {
+                    this.props.dispatch(deletePantryItem(item))
+                }}
+                >Delete</button>
+                </div>)
         });
         return (
-        <h1><ul>{lists}</ul></h1>
+        <div><ul>{lists}</ul></div>
+        
     )}
 }
 
