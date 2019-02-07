@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
+
 
 export default () => Component => {
     function RequiresLogin(props) {
@@ -23,5 +24,5 @@ export default () => Component => {
         error: state.auth.error
     });
 
-    return connect(mapStateToProps)(RequiresLogin);
+    return withRouter(connect(mapStateToProps)(RequiresLogin));
 };

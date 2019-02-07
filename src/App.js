@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Link, withRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, withRouter, Switch} from 'react-router-dom';
 
 import './app.css'
 import Dashboard from './components/dashboard'
 import HeaderBar from './components/header-bar';
 import LandingPage from './components/landing-page'
 import RegistrationPage from './components/registration-page'
+import MainPage from './components/mainPage'
 import {refreshAuthToken} from './actions/auth';
 import { AddForm } from './components/addForm';
 import RecipeViewer from './components/recipeViewer'
@@ -44,12 +45,15 @@ stopPeriodicRefresh() {
 
   render() {
     return (
-    <div className="app">
-                <HeaderBar />
-                <Route exact path="/" component={LandingPage} />
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/register" component={RegistrationPage} />
-            </div>
+    <div className="app">        
+      <HeaderBar />
+      <Switch>
+      <Route exact path="/register" component={RegistrationPage} />
+      <Route path="/" component={MainPage} />
+      </Switch>
+    </div>
+                
+    
     );
   }
 }

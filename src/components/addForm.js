@@ -38,7 +38,7 @@ export class AddForm extends React.Component {
                 }
                 return;
             })
-            .then(() => console.log('Submitted with values', values))
+            .then(() =>this.props.history.push('/'))
             .catch(err => {
                 const {reason, message, location} = err;
                 if (reason === 'ValidationError') {
