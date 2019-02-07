@@ -6,11 +6,12 @@ import './form.css'
 
 export class AddForm extends React.Component {
     state={
-        addingTo: 'fridge'
+        addingTo: '',
+        error: ''
     }
+
     onSubmit(values) {
-        if(this.state.addingTo === 'fridge'){
-            const authToken = this.props.authToken;
+        if(this.state.addingTo === 'fridge' && this.state.addingTo !== ''){
         return fetch('https://fridgeapp-backend.herokuapp.com/api/item', {
             method: 'POST',
             body: JSON.stringify(values),
@@ -38,7 +39,7 @@ export class AddForm extends React.Component {
                 }
                 return;
             })
-            .then(() =>this.props.history.push('/'))
+            .then(() =>this.props.history.push('/fridge'))
             .catch(err => {
                 const {reason, message, location} = err;
                 if (reason === 'ValidationError') {
@@ -55,7 +56,7 @@ export class AddForm extends React.Component {
                     })
                 );
             });
-    } else if(this.state.addingTo === 'pantry'){
+    } else if(this.state.addingTo === 'pantry' && this.state.addingTo !== ''){
         return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
         method: 'POST',
         body: JSON.stringify(values),
@@ -83,7 +84,7 @@ export class AddForm extends React.Component {
             }
             return;
         })
-        .then(() => console.log('Submitted with values', values))
+        .then(() => this.props.history.push('/pantry'))
         .catch(err => {
             const {reason, message, location} = err;
             if (reason === 'ValidationError') {
@@ -100,8 +101,11 @@ export class AddForm extends React.Component {
                 })
             );
         });
+        
     }
-}
+    else{this.setState({error: 'Please select the fridge or the pantry'})}
+    }
+    
     onFridgeClick(e){
         this.setState({
             addingTo: 'fridge'
@@ -121,7 +125,7 @@ export class AddForm extends React.Component {
         if (this.props.submitSucceeded) {
             successMessage = (
                 <div className="message message-success">
-                    your item was added to the {this.state.addingTo}
+                {this.state.addingTo === '' ? this.state.error: `Your item was added to the ${this.state.addingTo}`}
                 </div>
             );
         }

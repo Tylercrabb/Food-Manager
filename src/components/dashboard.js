@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { Route, Link} from 'react-router-dom';
 
 // components
 import AddForm from './addForm';
@@ -20,7 +20,6 @@ import home from '../images/outline_home_black_48dp.png'
 class Dashboard extends Component {
   render() {
     return (
-      
       <div className="Dashboard">
           <nav className="App-header">
             <Link className="Fridge-logo" to="/fridge"><img src={fridge}  alt="logo" /></Link>
@@ -37,8 +36,6 @@ class Dashboard extends Component {
       </main>
       <p className="footer"></p>
       </div>
-      
-  
     );
   }
 }

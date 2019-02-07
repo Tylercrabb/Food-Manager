@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../recipe.css'
-import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, setErrorMessage, clearErrorMessage} from '../actions'
+import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, clearErrorMessage} from '../actions'
  export class RecipeViewer extends React.Component{
     componentDidMount(){
         this.props.dispatch(fetchPantryInventory())
