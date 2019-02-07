@@ -10,8 +10,10 @@ import {fetchFridgeInventory, deleteFridgeItem} from '../actions/'
 
     render() {
         let lists = this.props.fridgeInventory.map((item,index) => {
-            return (<div>
-                <li key={item.id}>{item.itemName}{item.expirationDate}</li>
+            return (
+                <div className ="list-item">
+                <li className = "item-name" key={item.id}>{item.itemName}</li>
+                <p className = "expiration-date">This will expire on: {item.expirationDate.split('T')[0]}</p>
                 <button 
                 key={index}
                 onClick={e => {
@@ -22,7 +24,7 @@ import {fetchFridgeInventory, deleteFridgeItem} from '../actions/'
                 </div>)
         });
         return (
-        <p><ul>{lists}</ul></p>
+        <div className = "Inventory-List"><h3>My Fridge</h3><ul className ='item-list'>{lists}</ul></div>
     )}
 }
 

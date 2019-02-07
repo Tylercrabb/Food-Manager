@@ -1,10 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPantryInventory, fetchFridgeInventory, getRecipes} from '../actions'
+import '../recipe.css'
+import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, setErrorMessage, clearErrorMessage} from '../actions'
  export class RecipeViewer extends React.Component{
     componentDidMount(){
         this.props.dispatch(fetchPantryInventory())
         this.props.dispatch(fetchFridgeInventory())
+    }
+
+    componentWillUnmount(){
+        this.props.dispatch(clearRecipes())
+        this.props.dispatch(clearErrorMessage())
     }
      
 
@@ -15,15 +21,17 @@ import {fetchPantryInventory, fetchFridgeInventory, getRecipes} from '../actions
             let id = recipe.id;
             let name = recipe.title.replace(/ /g, '-')
             
-            return (<div>
-            <li key={recipe.id}>{recipe.id} {recipe.title}<img className='recipe-picture'  alt={recipe.title} src = {recipe.image}/></li>
+            return (<div className ="list-item">
+                <img className='recipe-picture'  alt={recipe.title} src = {recipe.image}/>
+            <li className = "item-name" key={recipe.id}>{recipe.title}</li>
                 <a target="_blank" rel="noopener noreferrer" href= {`${baseURL}${name}-${id}`}>Check out this recipe on spoonacular</a>
             </div>)
 
         })
         return (
-        <div>
-        <ul>{recipeDisplay}</ul>
+        <div className="Inventory-List" >
+        <p>{this.props.errorMessage}</p>
+        <ul className='item-list' >{recipeDisplay}</ul>
         <button
         onClick={() => this.props.dispatch(getRecipes())
         }
@@ -38,7 +46,8 @@ import {fetchPantryInventory, fetchFridgeInventory, getRecipes} from '../actions
 const mapStateToProps = state => ({
     pantryInventory: state.food.pantryInventory,
     fridgeInventory: state.food.fridgeInventory,
-    recipes: state.food.recipes
+    recipes: state.food.recipes,
+    errorMessage: state.food.errorMessage
 });
 
 export default connect(mapStateToProps)(RecipeViewer);

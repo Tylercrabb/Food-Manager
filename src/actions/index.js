@@ -147,9 +147,34 @@ export const getRecipeSuccess = results => ({
                 return res.json()
             })
             .then( results => {
+                if(results.length < 1){
+                    dispatch(setErrorMessage('Oh no! No recipes found using your inventory!'))
+                }
                 dispatch(getRecipeSuccess(results))
             })
         }
+
+
+export const CLEAR_RECIPES ='CLEAR_RECIPES'
+
+export const clearRecipes = () => ({
+    type: CLEAR_RECIPES
+})
+
+
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE';
+
+export const setErrorMessage = errorMessage => ({
+    type: SET_ERROR_MESSAGE,
+    errorMessage
+});
+
+export const CLEAR_ERROR_MESSAGE = 'CLEAR_ERROR_MESSAGE';
+
+export const clearErrorMessage = errorMessage => ({
+    type: CLEAR_ERROR_MESSAGE,
+    errorMessage
+});
 
             
         

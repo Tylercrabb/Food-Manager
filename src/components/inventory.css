@@ -1,0 +1,119 @@
+.Dashboard{
+   
+    display: grid;
+    grid-template-columns: 15% 15% auto 15% 15%;
+    grid-template-rows: 15% 15% auto 15% 15%; 
+    
+}
+
+
+
+.Inventory-List{
+    
+    background-color:#87A330;
+    border-radius: 25px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    text-align: center;
+    
+}
+
+.header-bar{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ECF9A7;
+    border-radius: 25px;
+    text-align: center;
+    
+}
+/* need to rename these, confusing */
+/* app header is actually the sidebar */
+.App-header{
+    display: grid;
+    grid-template-columns: 250px;
+    grid-template-rows: 20% 20% auto 20% 20%;
+    height:500px;
+    
+}
+
+
+
+main{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+}
+
+
+
+.item-list{
+    list-style: none;
+}
+
+.list-item{
+    background-color: #ECF9A7;
+    width: 100%;
+   margin-bottom: 5px;
+   margin-right: 5px;
+    border: 1px solid black;
+    border-radius:  25px;
+    
+}
+
+ .list-item:hover {
+    transform: scale(1.05, 1.05);
+  }
+
+  .list-item:hover::after {
+    opacity: 1;
+  }
+.item-name{
+ text-align: center;
+}
+
+.expiration-date{
+   text-align: center;
+}
+
+.delete-button{
+
+margin-left: auto;
+margin-right: auto;
+}
+
+.Fridge-logo{
+    grid-row-start: 1;
+    
+}
+
+.Pantry-logo{
+    grid-row-start: 2;
+    
+}
+
+.Add-logo{
+    grid-row-start: 3;
+    
+}
+
+.Home-logo{
+    grid-row-start: 4;
+    
+}
+
+.Recipe-logo{
+    grid-row-start: 5;
+    
+}
+
+/* .footer {
+    grid-row-start: 6;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    width: 100%;
+    height:25%;
+    background-color: tan;
+    color: white;
+    text-align: center;
+  } */
