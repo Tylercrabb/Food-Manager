@@ -62,7 +62,7 @@ main{
 }
 
  .list-item:hover {
-    transform: scale(1.05, 1.05);
+    transform: scale(1.02, 1.02);
   }
 
   .list-item:hover::after {
@@ -117,3 +117,14 @@ margin-right: auto;
     color: white;
     text-align: center;
   } */
+
+.form-holder{
+    background-color: #ECF9A7;
+}
+
+.add-form{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}

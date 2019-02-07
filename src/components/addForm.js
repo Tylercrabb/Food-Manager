@@ -135,8 +135,8 @@ export class AddForm extends React.Component {
 
         return (
             
-            
-            <form
+            <div className= "form-holder">
+            <form className ="add-form"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
@@ -179,6 +179,7 @@ export class AddForm extends React.Component {
                     Add new Item
                 </button>
             </form>
+            </div>
         );
     }
 }
