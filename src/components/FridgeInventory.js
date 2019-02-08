@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchFridgeInventory, deleteFridgeItem} from '../actions/'
-
- class FridgeInventory extends Component{
+import {fetchFridgeInventory, deleteFridgeItem, clearErrorMessage} from '../actions/'
+import grocery from '../images/grocery.jpg'
+ 
+class FridgeInventory extends Component{
+    
     componentDidMount(){
         this.props.dispatch(fetchFridgeInventory())  
+        this.props.dispatch(clearErrorMessage())
     }
 
 
@@ -24,7 +27,11 @@ import {fetchFridgeInventory, deleteFridgeItem} from '../actions/'
                 </div>)
         });
         return (
-        <div className = "Inventory-List"><h3>My Fridge</h3><ul className ='item-list'>{lists}</ul></div>
+        <div className = "Inventory-List">
+        <h3 className ="view">My Fridge</h3>
+        <img className="fridge-image" src={grocery} alt="pretty pantry"/>
+        <ul className ='item-list'>{lists}</ul>
+        </div>
     )}
 }
 

@@ -3,11 +3,12 @@ import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
 import {connect} from 'react-redux'
 import Input from './input';
 import './form.css'
+import {setErrorMessage, clearErrorMessage} from '../actions'
 
 export class AddForm extends React.Component {
     state={
-        addingTo: '',
-        error: ''
+        addingTo: null,
+       
     }
 
     onSubmit(values) {
@@ -39,7 +40,7 @@ export class AddForm extends React.Component {
                 }
                 return;
             })
-            .then(() =>this.props.history.push('/fridge'))
+            .then(this.props.history.push('/fridge'))
             .catch(err => {
                 const {reason, message, location} = err;
                 if (reason === 'ValidationError') {
@@ -56,7 +57,7 @@ export class AddForm extends React.Component {
                     })
                 );
             });
-    } else if(this.state.addingTo === 'pantry' && this.state.addingTo !== ''){
+    } else if(this.state.addingTo === 'pantry'){
         return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
         method: 'POST',
         body: JSON.stringify(values),
@@ -103,8 +104,9 @@ export class AddForm extends React.Component {
         });
         
     }
-    else{this.setState({error: 'Please select the fridge or the pantry'})}
+    else{ return this.props.dispatch(setErrorMessage('Please select the fridge or the pantry'))}
     }
+    
     
     onFridgeClick(e){
         this.setState({
@@ -121,21 +123,21 @@ export class AddForm extends React.Component {
     }
 
     render() {
-        let successMessage;
-        if (this.props.submitSucceeded) {
-            successMessage = (
-                <div className="message message-success">
-                {this.state.addingTo === '' ? this.state.error: `Your item was added to the ${this.state.addingTo}`}
-                </div>
-            );
-        }
+        // let successMessage;
+        // if (this.props.submitSucceeded) {
+        //     successMessage = (
+        //         <div className="message message-success">
+        //         {this.state.addingTo === '' ? this.state.error: `Your item was added to the ${this.state.addingTo}`}
+        //         </div>
+        //     );
+        // }
 
-        let errorMessage;
-        if (this.props.error) {
-            errorMessage = (
-                <div className="message message-error">{this.props.error}</div>
-            );
-        }
+        // let errorMessage;
+        // if (this.props.error) {
+        //     errorMessage = (
+        //         <div className="message message-error">{this.props.error}</div>
+        //     );
+        // }
 
         return (
             
@@ -144,8 +146,8 @@ export class AddForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                {successMessage}
-                {errorMessage}
+                {/* {successMessage}
+                {errorMessage} */}
                 <p>Add item to: {this.state.addingTo}</p>
                 <button
                 className ='blank'
@@ -173,10 +175,8 @@ export class AddForm extends React.Component {
                     name="expirationDate"
                     type="date"
                     component={Input}
-                    label="Expiration Date:"
-                    
+                    label="Expiration Date:"  
                 />
-                
                 <button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>

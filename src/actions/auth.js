@@ -1,9 +1,10 @@
 import jwtDecode from 'jwt-decode';
 import {SubmissionError} from 'redux-form';
-
+import {loading, stopLoading} from './index'
 
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
+import { load } from 'dotenv';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -44,6 +45,7 @@ const storeAuthInfo = (authToken, dispatch) => {
 
 export const login = (username, password) => dispatch => {
     dispatch(authRequest());
+    dispatch(loading());
     return (
         fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
@@ -60,6 +62,7 @@ export const login = (username, password) => dispatch => {
             .then(res => normalizeResponseErrors(res))
             .then(res => res.json())
             .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+            .then(() =>{dispatch(stopLoading())})
             .catch(err => {
                 const {code} = err;
                 const message =
@@ -67,9 +70,11 @@ export const login = (username, password) => dispatch => {
                         ? 'Incorrect username or password'
                         : 'Unable to login, please try again';
                 dispatch(authError(err));
+                dispatch(stopLoading())
                 // Could not authenticate, so return a SubmissionError for Redux
                 // Form
                 return Promise.reject(
+
                     new SubmissionError({
                         _error: message
                     })

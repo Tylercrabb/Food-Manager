@@ -3,6 +3,7 @@ import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input';
 import {login} from '../actions/auth';
 import {required, nonEmpty} from '../validators';
+import{setErrorMessage} from '../actions'
 
 export class LoginForm extends React.Component {
     onSubmit(values) {
@@ -12,11 +13,12 @@ export class LoginForm extends React.Component {
     render() {
         let error;
         if (this.props.error) {
-            error = (
-                <div className="form-error" aria-live="polite">
-                    {this.props.error}
-                </div>
-            );
+            this.props.dispatch(setErrorMessage('Invalid Login Credentials'))
+            // error = (
+            //     <div className="form-error" aria-live="polite">
+            //         {this.props.error}
+            //     </div>
+            // );
         }
         return (
             <form
@@ -24,7 +26,7 @@ export class LoginForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                {error}
+                {/* {error} */}
                 <label htmlFor="username">Username</label>
                 <Field
                     component={Input}

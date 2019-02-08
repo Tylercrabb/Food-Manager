@@ -1,16 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../recipe.css'
-import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, clearErrorMessage} from '../actions'
+import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, clearErrorMessage, loading, stopLoading} from '../actions'
  export class RecipeViewer extends React.Component{
+    componentWillMount(){
+        this.props.dispatch(loading())
+    }
     componentDidMount(){
         this.props.dispatch(fetchPantryInventory())
         this.props.dispatch(fetchFridgeInventory())
+        this.props.dispatch(stopLoading())
+        this.props.dispatch(clearErrorMessage())
     }
 
     componentWillUnmount(){
         this.props.dispatch(clearRecipes())
         this.props.dispatch(clearErrorMessage())
+        this.props.dispatch(stopLoading())
     }
      
 

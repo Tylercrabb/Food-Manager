@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Route, Link} from 'react-router-dom';
-
+import {loading} from '../actions/index'
+import {clearErrorMessage} from '../actions'
 // components
 import AddForm from './addForm';
 import requiresLogin from './requires-login'
@@ -9,17 +10,27 @@ import RecipeViewer from './recipeViewer';
 import FridgeInventory from './FridgeInventory'
 import PantryInventory from './PantryInventory'
 
+
 // icons
 import fridge from '../images/fridge.png';
 import pantry from '../images/pantry.png';
 import plus from '../images/baseline_add_black_18dp.png'
 import home from '../images/outline_home_black_48dp.png'
 
+import grocery from '../images/grocery.jpg'
+
 
 
 class Dashboard extends Component {
+  componentWillMount(){
+    this.props.dispatch(clearErrorMessage())
+  }
+
+
   render() {
+    
     return (
+      
       <div className="Dashboard">
           <nav className="App-header">
             <Link className="Fridge-logo" to="/fridge"><img src={fridge}  alt="logo" /></Link>
@@ -34,7 +45,6 @@ class Dashboard extends Component {
         <Route  path ='/add' component={AddForm} />
         <Route  path ='/recipe' component={RecipeViewer} />
       </main>
-      <p className="footer"></p>
       </div>
     );
   }
@@ -44,7 +54,8 @@ const mapStateToProps = state => {
   const {currentUser} = state.auth;
   return {
       username: state.auth.currentUser.username,
-      name: `${currentUser.firstName} ${currentUser.lastName}`
+      name: `${currentUser.firstName} ${currentUser.lastName}`,
+      isLoading: state.food.isLoading
       
   };
 };

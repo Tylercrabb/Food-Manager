@@ -1,26 +1,34 @@
+*{
+    font-family: 'Quicksand', sans-serif;
+}
+
 .Dashboard{
    
     display: grid;
     grid-template-columns: 15% 15% auto 15% 15%;
     grid-template-rows: 15% 15% auto 15% 15%; 
-    
+   
+   margin-bottom: 100px;
+   clear: both;
 }
 
 
+img{
+    height: 100%;
+    width: 100%
+}
 
 .Inventory-List{
-    
-    background-color:#87A330;
+    background-color:rgb(153, 189, 45);
     border-radius: 25px;
-    grid-column-start: 1;
-    grid-column-end: 5;
+    width: 60%;
     text-align: center;
     
 }
 
 .header-bar{
     width: 50%;
-    margin-left: auto;
+    margin-bottom: 5px;
     margin-right: auto;
     background-color: #ECF9A7;
     border-radius: 25px;
@@ -30,35 +38,43 @@
 /* need to rename these, confusing */
 /* app header is actually the sidebar */
 .App-header{
-    display: grid;
-    grid-template-columns: 250px;
-    grid-template-rows: 20% 20% auto 20% 20%;
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns: 250px;
+    grid-template-rows: 20% 20% auto 20% 20%; */
     height:500px;
+    grid-column-start: 1;
+    grid-column-end: 2;
     
 }
 
 
 
 main{
-    grid-column-start: 3;
-    grid-column-end: 3;
+    margin-top: 3px;
+    grid-column-start: 2;
+    grid-column-end: 5;
     grid-row-start: 1;
+    display:grid
 }
 
 
 
 .item-list{
     list-style: none;
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
 }
 
 .list-item{
     background-color: #ECF9A7;
-    width: 100%;
-   margin-bottom: 5px;
-   margin-right: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
     border: 1px solid black;
-    border-radius:  25px;
-    
+    border-radius:  15px;
+    width: 35%;
 }
 
  .list-item:hover {
@@ -70,41 +86,50 @@ main{
   }
 .item-name{
  text-align: center;
+ font-family: 'Questrial', sans-serif;
 }
 
 .expiration-date{
    text-align: center;
+   font-family: 'Questrial', sans-serif;
+   font-size: 12px
 }
 
 .delete-button{
-
+font-family: 'Questrial', sans-serif;
 margin-left: auto;
 margin-right: auto;
 }
 
 .Fridge-logo{
     grid-row-start: 1;
+    height: 100px;
+    width: 100px
     
 }
 
 .Pantry-logo{
     grid-row-start: 2;
-    
+    height: 100px;
+    width: 100px
 }
 
 .Add-logo{
     grid-row-start: 3;
-    
+    height: 100px;
+    width: 100px
 }
 
 .Home-logo{
     grid-row-start: 4;
-    
+    height: 100px;
+    width: 100px
 }
 
 .Recipe-logo{
     grid-row-start: 5;
-    
+    height: 100px;
+    width: 100px
 }
 
 /* .footer {
@@ -127,4 +152,33 @@ margin-right: auto;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
+}
+
+.footer-image1{
+opacity: .5;
+grid-column-start: 2;
+width:100%
+
+}
+
+.footer{
+    position: absolute;
+    bottom:5px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.fridge-image{
+    
+    
+    
+    
+}
+
+.view{
+    text-align: left;
+    margin-left: 4%;
+    font-size: 2em;
+    border-bottom: solid black 1px;
 }

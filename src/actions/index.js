@@ -9,6 +9,7 @@ export const fetchFridgeSuccess = items => ({
 
 export const fetchFridgeInventory = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
+    dispatch(loading());
     return fetch(`https://fridgeapp-backend.herokuapp.com/api/item`,{
         method: 'GET',
         headers: {
@@ -25,7 +26,7 @@ export const fetchFridgeInventory = () => (dispatch, getState) => {
         })
         .then(items => {
             dispatch(fetchFridgeSuccess(items));
-            
+            dispatch(stopLoading())
         });
     }
 
@@ -38,6 +39,7 @@ export const fetchPantrySuccess = items => ({
 
 export const fetchPantryInventory = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
+    dispatch(loading())
     return fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`, {
         method: 'GET',
         headers: {
@@ -53,7 +55,7 @@ export const fetchPantryInventory = () => (dispatch, getState) => {
         })
         .then(items => {
             dispatch(fetchPantrySuccess(items));
-            
+            dispatch(stopLoading())
         });
     }
 
@@ -132,7 +134,7 @@ export const getRecipeSuccess = results => ({
         let pantryInvNames = getNames(getState().food.pantryInventory) 
         let totalInv = fridgeInvNames.concat(pantryInvNames);
         let query = totalInv.join('%2C');
-        
+        dispatch(loading())
        return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=${query}`, {
             method: 'GET',
             
@@ -151,6 +153,7 @@ export const getRecipeSuccess = results => ({
                     dispatch(setErrorMessage('Oh no! No recipes found using your inventory!'))
                 }
                 dispatch(getRecipeSuccess(results))
+                dispatch(stopLoading())
             })
         }
 
@@ -176,6 +179,19 @@ export const clearErrorMessage = errorMessage => ({
     errorMessage
 });
 
+export const LOADING = 'LOADING';
+
+export const loading = flip => ({
+    type: LOADING,
+    flip
+});
+
+export const STOP_LOADING = 'STOP_LOADING';
+
+export const stopLoading = flip => ({
+    type: STOP_LOADING,
+    flip
+});
             
         
            
