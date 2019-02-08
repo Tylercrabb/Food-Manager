@@ -36,7 +36,6 @@ import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, cl
         })
         return (
         <div className="Inventory-List" >
-        <p>{this.props.errorMessage}</p>
         <ul className='item-list' >{recipeDisplay}</ul>
         <button
         onClick={() => this.props.dispatch(getRecipes())

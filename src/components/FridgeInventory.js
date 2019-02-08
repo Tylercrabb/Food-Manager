@@ -12,6 +12,17 @@ class FridgeInventory extends Component{
 
 
     render() {
+        if(this.props.fridgeInventory.length === 0){
+            return (
+            <div className = "Inventory-List">
+             <h3 className ="view">My Fridge</h3>
+            <ul className ='item-list'>
+            <div className ="list-item">
+            <li className = "item-name" >Looks like your fridge is empty, lets add some items!</li>
+            </div>
+            </ul>
+            </div>)
+        }
         let lists = this.props.fridgeInventory.map((item,index) => {
             return (
                 <div className ="list-item">
@@ -26,10 +37,13 @@ class FridgeInventory extends Component{
                 >Delete</button>
                 </div>)
         });
+        
+       
         return (
+       
         <div className = "Inventory-List">
         <h3 className ="view">My Fridge</h3>
-        <img className="fridge-image" src={grocery} alt="pretty pantry"/>
+        {/* <img className="fridge-image" src={grocery} alt="pretty pantry"/> */}
         <ul className ='item-list'>{lists}</ul>
         </div>
     )}

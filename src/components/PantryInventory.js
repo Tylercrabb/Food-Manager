@@ -10,6 +10,17 @@ import './inventory.css'
 
 
     render() {
+        if(this.props.PantryInventory.length === 0){
+            return (
+            <div className = "Inventory-List">
+             <h3 className ="view">My Pantry</h3>
+            <ul className ='item-list'>
+            <div className ="list-item">
+            <li className = "item-name" >Looks like your pantry is empty, lets add some items!</li>
+            </div>
+            </ul>
+            </div>)
+        }
         let lists = this.props.PantryInventory.map((item, index) => {
             return (<div className = "list-item">
                 <li className = "item-name" key={item.id}>{item.itemName}</li>
