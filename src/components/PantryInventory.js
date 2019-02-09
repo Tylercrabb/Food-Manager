@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { Route, Link} from 'react-router-dom';
+import plus from '../images/baseline_add_black_18dp.png'
+import {AddForm} from  './addForm'
 import {fetchPantryInventory, deletePantryItem, clearErrorMessage} from '../actions/'
-import './inventory.css'
+// import './inventory.css'
  class PantryInventory extends Component{
     componentDidMount(){
         this.props.dispatch(fetchPantryInventory())
@@ -14,6 +17,7 @@ import './inventory.css'
             return (
             <div className = "Inventory-List">
              <h3 className ="view">My Pantry</h3>
+             <Link className="Add-logo" to="/add"><img className ="plus" src ={plus} alt ='add'/></Link>
             <ul className ='item-list'>
             <div className ="list-item">
             <li className = "item-name" >Looks like your pantry is empty, lets add some items!</li>
@@ -35,10 +39,13 @@ import './inventory.css'
         });
         return (
         <div className ="Inventory-List">
-        <h3 className ="view">My Pantry</h3>
-        <ul className ='item-list'>{lists}</ul>
-        </div>
+        <h3 className ="view">My Pantry
+        <Link className="Add-logo" to="/add"><img className ="plus" src ={plus} alt ='add'/></Link>
+        </h3>
         
+        <ul className ='item-list'>{lists}</ul>
+        <Route  path ='/add' component={AddForm} />
+        </div>
     )}
 }
 

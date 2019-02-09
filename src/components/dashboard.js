@@ -35,7 +35,7 @@ class Dashboard extends Component {
           <nav className="App-header">
             <Link className="Fridge-logo" to="/fridge"><img src={fridge}  alt="logo" /></Link>
             <Link className="Pantry-logo" to ="/pantry"><img src={pantry}  alt="logo" /></Link>
-            <Link className="Add-logo" to="/add"><img src ={plus} alt ='add'/></Link>
+            <Link className="Add-logo" to="/add"><img src={plus} alt ='add'/></Link>
             <Link className="Home-logo"to="/dashboard"><img src={home} alt ='home'/></Link>
             <Link className="Recipe-logo" to="/recipe"><button >Find a Recipe</button></Link>
           </nav>
