@@ -27,20 +27,24 @@ class ExpirationItems extends Component{
         this.props.dispatch(setExpiringItems(expiringItems))
     }    
 
- 
+
     componentDidMount(){
-        this.props.dispatch(fetchFridgeInventory())  
+        this.props.dispatch(fetchFridgeInventory())
         this.props.dispatch(fetchPantryInventory())
-        this.setExpiring()
+       
+        setTimeout(() => this.setExpiring(), 500)
         
     }
-
-    componentWillUnmount(){
-        this.props.dispatch(clearExpiringItems())
-
-    }
+    
 
     render(){
+       
+            let noItems =
+            <div className="list-item">
+            <li className = "item-name" key='1'>Looks like all of your food is up to date</li>
+            <p className='expiration-date'></p>
+            </div>
+        
         let lists = this.props.soonToExpire.map((item) => {
             return (<div className = "list-item">
                 <li className = "item-name" key={item.id}>{item.itemName}</li>
@@ -51,9 +55,10 @@ class ExpirationItems extends Component{
     
 return (
     <div className ="Inventory-List">
-    {/* turnary is used to display a nicer message if nothing in the fridge or pantry is due to expire in the next couple of days */}
-        {this.props.soonToExpire.length === 0 ? <h3 className="view">Your food is fresh! <br></br>Nothing is expiring soon.</h3>: <h3 className ="view">These items will expire soon!</h3>}
-        <ul className ='item-list'>{lists}</ul>
+        <h3 className="view">Expiring soon:</h3>
+        {this.props.soonToExpire.length === 0 ?
+        <ul className="item-list">{noItems}</ul>:
+        <ul className ='item-list'>{lists}</ul>}
         </div>
     )
 }

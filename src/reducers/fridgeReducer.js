@@ -1,6 +1,6 @@
 import {FETCH_FRIDGE_SUCCESS, FETCH_PANTRY_SUCCESS, DELETE_PANTRY_ITEM_SUCCESS, DELETE_FRIDGE_ITEM_SUCCESS, GET_RECIPES_SUCCESS, 
     SET_ERROR_MESSAGE, CLEAR_ERROR_MESSAGE, 
-    CLEAR_RECIPES, LOADING, STOP_LOADING, SET_ADDING, SET_EXPIRING_ITEMS, CLEAR_EXPIRING_ITEMS} from '../actions'
+    CLEAR_RECIPES, LOADING, STOP_LOADING, SET_ADDING, SET_EXPIRING_ITEMS, CLEAR_EXPIRING_ITEMS, CLEAR_FRIDGE_INVENTORY, CLEAR_PANTRY_INVENTORY} from '../actions'
 const initialState = {
     fridgeInventory:[],
     pantryInventory:[],
@@ -82,6 +82,18 @@ else if(action.type === SET_EXPIRING_ITEMS){
 else if(action.type === CLEAR_EXPIRING_ITEMS){
     return Object.assign({}, state, {
         soonToExpire: []
+    })
+}
+
+else if(action.type === CLEAR_FRIDGE_INVENTORY){
+    return Object.assign({}, state, {
+        fridgeInventory:[]
+    })
+}
+
+else if(action.type === CLEAR_PANTRY_INVENTORY){
+    return Object.assign({}, state, {
+        pantryInventory:[]
     })
 }
 return state

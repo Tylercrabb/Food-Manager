@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
-import {clearErrorMessage} from '../actions'
+import {clearErrorMessage, clearExpiringItems, clearFridgeInventory, clearPantryInventory} from '../actions'
 // import './inventory.css'
 import './flex.css'
 export class HeaderBar extends React.Component {
@@ -10,6 +10,8 @@ export class HeaderBar extends React.Component {
         this.props.dispatch(clearAuth());
         clearAuthToken();
         this.props.dispatch(clearErrorMessage())
+        this.props.dispatch(clearFridgeInventory())
+        this.props.dispatch(clearPantryInventory())
     }
     
     render() {

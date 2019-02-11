@@ -18,8 +18,7 @@ import {fetchPantryInventory, deletePantryItem, clearErrorMessage, setAdding} fr
         if(this.props.PantryInventory.length === 0){
             return (
             <div className = "Inventory-List">
-             <h3 className ="view">My Pantry</h3>
-             <Link className="Add-logo" to="/add"><img className ="plus" src ={plus} alt ='add'/></Link>
+            <h3 className ="view">My Pantry</h3>
             <ul className ='item-list'>
             <div className ="list-item">
             <li className = "item-name" >Looks like your pantry is empty, lets add some items!</li>
@@ -44,7 +43,6 @@ import {fetchPantryInventory, deletePantryItem, clearErrorMessage, setAdding} fr
         return (
         <div className ="Inventory-List">
         <h3 className ="view">My Pantry
-        <Link className="Add-logo" to="/add"><img className ="plus" src ={plus} alt ='add'/></Link>
         </h3>
         
         <ul className ='item-list'>{lists}</ul>

@@ -213,4 +213,16 @@ export const clearExpiringItems = items => ({
     type: CLEAR_EXPIRING_ITEMS,
     items
 })
-           
+         
+
+export const CLEAR_PANTRY_INVENTORY ='CLEAR_PANTRY_INVENTORY'
+
+export const clearPantryInventory = () => ({
+    type: CLEAR_PANTRY_INVENTORY
+})
+
+export const CLEAR_FRIDGE_INVENTORY ='CLEAR_FRIDGE_INVENTORY'
+
+export const clearFridgeInventory = () => ({
+    type: CLEAR_FRIDGE_INVENTORY
+})

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Route, Link} from 'react-router-dom';
-import {loading} from '../actions/index'
-import {clearErrorMessage} from '../actions'
+import {loading, fetchFridgeInventory, fetchPantryInventory} from '../actions/index'
+import {clearErrorMessage, clearExpiringItems} from '../actions'
 // components
 import AddForm from './addForm';
 import requiresLogin from './requires-login'
@@ -32,7 +32,7 @@ class Dashboard extends Component {
     
     return (
       
-      <div className="Dashboard">
+      <section className="Dashboard">
           <nav className="App-header">
             <Link className="Fridge-logo" to="/fridge"><img src={fridge}  alt="logo" /></Link>
             <Link className="Pantry-logo" to ="/pantry"><img src={pantry}  alt="logo" /></Link>
@@ -45,10 +45,10 @@ class Dashboard extends Component {
         <Route  path='/pantry' component={PantryInventory}/>
         <Route  path ='/add' component={AddForm} />
         <Route  path ='/recipe' component={RecipeViewer} />
-        <Route exact path ='/' component = {ExpirationItems} />
+        <Route exact path ='/' component = {FridgeInventory} />
         <Route exact path ='/dashboard' component = {ExpirationItems} />
       </main>
-      </div>
+      </section>
     );
   }
 }
