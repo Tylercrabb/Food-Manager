@@ -78,5 +78,11 @@ else if(action.type === SET_EXPIRING_ITEMS){
         soonToExpire: action.items
     })
 }
+
+else if(action.type === CLEAR_EXPIRING_ITEMS){
+    return Object.assign({}, state, {
+        soonToExpire: []
+    })
+}
 return state
 }

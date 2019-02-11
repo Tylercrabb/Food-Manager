@@ -34,6 +34,12 @@ class ExpirationItems extends Component{
         this.setExpiring()
         
     }
+
+    componentWillUnmount(){
+        this.props.dispatch(clearExpiringItems())
+
+    }
+
     render(){
         let lists = this.props.soonToExpire.map((item) => {
             return (<div className = "list-item">
@@ -46,7 +52,7 @@ class ExpirationItems extends Component{
 return (
     <div className ="Inventory-List">
     {/* turnary is used to display a nicer message if nothing in the fridge or pantry is due to expire in the next couple of days */}
-        {this.props.soonToExpire.length === 0 ? <h3 className="view">Your food is fresh!</h3>: <h3 className ="view">These items will expire soon!</h3>}
+        {this.props.soonToExpire.length === 0 ? <h3 className="view">Your food is fresh! <br></br>Nothing is expiring soon.</h3>: <h3 className ="view">These items will expire soon!</h3>}
         <ul className ='item-list'>{lists}</ul>
         </div>
     )

@@ -27,15 +27,17 @@ import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, cl
             let id = recipe.id;
             let name = recipe.title.replace(/ /g, '-')
             
-            return (<div className ="list-item">
+            return (<li><div className ="list-item">
+               
                 <img className='recipe-picture'  alt={recipe.title} src = {recipe.image}/>
             <li className = "item-name" key={recipe.id}>{recipe.title}</li>
                 <a target="_blank" rel="noopener noreferrer" href= {`${baseURL}${name}-${id}`}>Check out this recipe on spoonacular</a>
-            </div>)
+            </div> </li>)
 
         })
         return (
         <div className="Inventory-List" >
+        <h3 className ="view">Lets get cooking</h3>
         <ul className='item-list' >{recipeDisplay}</ul>
         <button
         onClick={() => this.props.dispatch(getRecipes())
