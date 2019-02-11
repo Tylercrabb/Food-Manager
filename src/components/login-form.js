@@ -11,7 +11,6 @@ export class LoginForm extends React.Component {
     }
 
     render() {
-        let error;
         if (this.props.error) {
             this.props.dispatch(setErrorMessage('Invalid Login Credentials'))
             // error = (

@@ -13,9 +13,13 @@ export class HeaderBar extends React.Component {
     }
     
     render() {
+       
         // Only render the log out button if we are logged in
+        let greeting;
+        if(this.props.loggedIn){
+            greeting = `Welcome ${this.props.userName.username}`
+        }
         let logOutButton;
-        console.log(this.props)
         if (this.props.loggedIn) {
             logOutButton = (
                 <button onClick={() => this.logOut()}>Log out</button>
@@ -26,7 +30,7 @@ export class HeaderBar extends React.Component {
             <div className="header-bar">
                 <h1>Food Manager</h1>
                 {this.props.error}
-                {this.props.loading ? <p>loading...</p>: null}
+                {this.props.loading ? <p>loading...</p>: <p>{greeting}</p>}
                 {logOutButton}
             </div>
         );
@@ -35,6 +39,7 @@ export class HeaderBar extends React.Component {
 
 const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null,
+    userName: state.auth.currentUser,
     loading: state.food.isLoading,
     error: state.food.errorMessage
     

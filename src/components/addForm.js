@@ -1,18 +1,17 @@
 import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {FrideInventory} from './FridgeInventory'
+import {PantryInventory} from './PantryInventory'
 import Input from './input';
 import './form.css'
 import {setErrorMessage, clearErrorMessage} from '../actions'
 
 export class AddForm extends React.Component {
-    state={
-        addingTo: null,
-       
-    }
 
     onSubmit(values) {
-        if(this.state.addingTo === 'fridge' && this.state.addingTo !== ''){
+        if(this.props.addingTo === 'fridge' && this.props.addingTo !== ''){
         return fetch('https://fridgeapp-backend.herokuapp.com/api/item', {
             method: 'POST',
             body: JSON.stringify(values),
@@ -57,7 +56,7 @@ export class AddForm extends React.Component {
                     })
                 );
             });
-    } else if(this.state.addingTo === 'pantry'){
+    } else if(this.props.addingTo === 'pantry'){
         return fetch('https://fridgeapp-backend.herokuapp.com/api/pantry', {
         method: 'POST',
         body: JSON.stringify(values),
@@ -103,93 +102,54 @@ export class AddForm extends React.Component {
             );
         });
         
-    }
-    else{ return this.props.dispatch(setErrorMessage('Please select the fridge or the pantry'))}
+        }
     }
     
-    
-    onFridgeClick(e){
-        this.setState({
-            addingTo: 'fridge'
-        })
-       
-        
-    }
-
-    onPantryClick(){
-        this.setState({
-            addingTo: 'pantry'
-        })
-    }
 
     render() {
-        // let successMessage;
-        // if (this.props.submitSucceeded) {
-        //     successMessage = (
-        //         <div className="message message-success">
-        //         {this.state.addingTo === '' ? this.state.error: `Your item was added to the ${this.state.addingTo}`}
-        //         </div>
-        //     );
-        // }
-
-        // let errorMessage;
-        // if (this.props.error) {
-        //     errorMessage = (
-        //         <div className="message message-error">{this.props.error}</div>
-        //     );
-        // }
-
         return (
-            
             <div className= "form-holder">
-            <form className ="add-form"
-                onSubmit={this.props.handleSubmit(values =>
-                    this.onSubmit(values)
-                )}>
-                {/* {successMessage}
-                {errorMessage} */}
-                <p>Add item to: {this.state.addingTo}</p>
-                <button
-                className ='blank'
-                onClick={e =>{
-                    e.preventDefault()
-                   this.onFridgeClick(e)
-                }}
-                >Fridge</button>
-                <button
-                onClick={e => {
-                    e.preventDefault()
-                    
-                    this.onPantryClick(e)
-                }}
-                >
-                Pantry</button>
-                <Field
+            
+                <form className ="add-form"
+                    onSubmit={this.props.handleSubmit(values =>
+                        this.onSubmit(values)
+                    )}>
+                
+                    <p>Add item to: {this.props.addingTo}</p>
+                
+                    <Field
                     name="itemName"
                     type="text"
                     component={Input}
                     label="Item Name:"
                     
-                />
-                <Field
-                    name="expirationDate"
-                    type="date"
-                    component={Input}
-                    label="Expiration Date:"  
-                />
-                <button
-                    type="submit"
-                    disabled={this.props.pristine || this.props.submitting}>
-                    Add new Item
-                </button>
-            </form>
+                    />
+                    <Field
+                        name="expirationDate"
+                        type="date"
+                        component={Input}
+                        label="Expiration Date:"  
+                    />
+                    <button
+                        type="submit"
+                        disabled={this.props.pristine || this.props.submitting}>
+                        Add new Item
+                    </button>
+                    <Link className= "cancel" to={`/${this.props.addingTo}`}>
+                    <button>Cancel</button>
+                    </Link>
+                        
+                       
+            
+                </form>
             </div>
         );
     }
 }
- const mapStateToProps = state => ({
-     authToken: state.auth.authToken
-     
+ 
+const mapStateToProps = state => ({
+     authToken: state.auth.authToken,
+     addingTo: state.food.addingTo  
  })
 
 AddForm = connect(mapStateToProps)(AddForm);

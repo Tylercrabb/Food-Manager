@@ -1,11 +1,15 @@
-import {FETCH_FRIDGE_SUCCESS, FETCH_PANTRY_SUCCESS, DELETE_PANTRY_ITEM_SUCCESS, DELETE_FRIDGE_ITEM_SUCCESS, GET_RECIPES_SUCCESS, SET_ERROR_MESSAGE, CLEAR_ERROR_MESSAGE, CLEAR_RECIPES, LOADING, STOP_LOADING} from '../actions'
+import {FETCH_FRIDGE_SUCCESS, FETCH_PANTRY_SUCCESS, DELETE_PANTRY_ITEM_SUCCESS, DELETE_FRIDGE_ITEM_SUCCESS, GET_RECIPES_SUCCESS, 
+    SET_ERROR_MESSAGE, CLEAR_ERROR_MESSAGE, 
+    CLEAR_RECIPES, LOADING, STOP_LOADING, SET_ADDING, SET_EXPIRING_ITEMS, CLEAR_EXPIRING_ITEMS} from '../actions'
 const initialState = {
     fridgeInventory:[],
     pantryInventory:[],
+    soonToExpire: [],
     recipes:[],
     errorMessage: null,
-    isLoading: false
-   
+    isLoading: false,
+    addingTo: null,
+    
 }
 
 export const fridgeReducer = (state=initialState, action) => {
@@ -60,6 +64,18 @@ else if(action.type === LOADING){
 else if(action.type === STOP_LOADING){
     return Object.assign({}, state, {
         isLoading: false
+    })
+}
+
+else if(action.type === SET_ADDING){
+    return Object.assign({}, state, {
+        addingTo: action.addTo
+    })
+}
+
+else if(action.type === SET_EXPIRING_ITEMS){
+    return Object.assign({}, state, {
+        soonToExpire: action.items
     })
 }
 return state

@@ -192,6 +192,25 @@ export const stopLoading = flip => ({
     type: STOP_LOADING,
     flip
 });
+
+export const SET_ADDING = 'SET_ADDING';
+
+export const setAdding = addTo => ({
+    type: SET_ADDING,
+    addTo
+})
             
-        
+export const SET_EXPIRING_ITEMS = 'SET_EXPIRING_ITEMS';
+
+export const setExpiringItems = items => ({
+    type: SET_EXPIRING_ITEMS,
+    items
+})
+
+export const CLEAR_EXPIRING_ITEMS = 'CLEAR_EXPIRING_ITEMS';
+
+export const clearExpiringItems = items => ({
+    type: CLEAR_EXPIRING_ITEMS,
+    items
+})
            

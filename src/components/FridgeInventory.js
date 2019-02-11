@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchFridgeInventory, deleteFridgeItem, clearErrorMessage} from '../actions/'
+import {fetchFridgeInventory, deleteFridgeItem, clearErrorMessage, setAdding} from '../actions/'
 import grocery from '../images/grocery.jpg'
  
 class FridgeInventory extends Component{
@@ -8,6 +8,7 @@ class FridgeInventory extends Component{
     componentDidMount(){
         this.props.dispatch(fetchFridgeInventory())  
         this.props.dispatch(clearErrorMessage())
+        this.props.dispatch(setAdding('fridge'))
     }
 
 

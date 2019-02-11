@@ -9,6 +9,7 @@ import requiresLogin from './requires-login'
 import RecipeViewer from './recipeViewer';
 import FridgeInventory from './FridgeInventory'
 import PantryInventory from './PantryInventory'
+import ExpirationItems from './expiration'
 
 
 // icons
@@ -44,6 +45,7 @@ class Dashboard extends Component {
         <Route  path='/pantry' component={PantryInventory}/>
         <Route  path ='/add' component={AddForm} />
         <Route  path ='/recipe' component={RecipeViewer} />
+        <Route exact path ='/dashboard' component = {ExpirationItems} />
       </main>
       </div>
     );

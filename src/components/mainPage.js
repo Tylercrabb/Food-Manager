@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Dashboard from './dashboard';
-import LoginForm from './login-form';
 import LandingPage from './landing-page'
 
 export function MainPage(props) {
