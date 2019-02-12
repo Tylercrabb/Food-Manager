@@ -2,11 +2,10 @@ import React from 'react';
 import {reduxForm, Field, SubmissionError, focus} from 'redux-form';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {FrideInventory} from './FridgeInventory'
-import {PantryInventory} from './PantryInventory'
+import {required, nonEmpty} from '../validators';
 import Input from './input';
 import './form.css'
-import {setErrorMessage, clearErrorMessage} from '../actions'
+
 
 export class AddForm extends React.Component {
 
@@ -108,9 +107,8 @@ export class AddForm extends React.Component {
 
     render() {
         return (
-            <div className= "form-holder">
-            
-                <form className ="add-form"
+            <div className ="home">
+                <form className ="login-form"
                     onSubmit={this.props.handleSubmit(values =>
                         this.onSubmit(values)
                     )}>
@@ -122,13 +120,14 @@ export class AddForm extends React.Component {
                     type="text"
                     component={Input}
                     label="Item Name:"
-                    
+                    validate={[required, nonEmpty]}
                     />
                     <Field
                         name="expirationDate"
                         type="date"
                         component={Input}
                         label="Expiration Date:"  
+                        validate={required}
                     />
                     <button
                         type="submit"
@@ -138,9 +137,6 @@ export class AddForm extends React.Component {
                     <Link className= "cancel" to={`/${this.props.addingTo}`}>
                     <button>Cancel</button>
                     </Link>
-                        
-                       
-            
                 </form>
             </div>
         );

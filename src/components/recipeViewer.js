@@ -11,6 +11,7 @@ import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, cl
         this.props.dispatch(fetchFridgeInventory())
         this.props.dispatch(stopLoading())
         this.props.dispatch(clearErrorMessage())
+        this.props.dispatch(getRecipes())
     }
 
     componentWillUnmount(){
@@ -21,28 +22,22 @@ import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, cl
      
 
     render() {
-        let recipeDisplay = this.props.recipes.map((recipe, index) =>{
+        let recipeDisplay = this.props.recipes.map((recipe) =>{
             // build url to display link to recipe
             let baseURL = 'https://spoonacular.com/recipes/'
             let id = recipe.id;
             let name = recipe.title.replace(/ /g, '-')
-            
-            return (<li><div className ="list-item">
-               
-                <img className='recipe-picture'  alt={recipe.title} src = {recipe.image}/>
+            return (
+            <div id = {recipe.id} className ="recipe-card">
+            <img className='recipe-picture'  alt={recipe.title} src = {recipe.image}/>
             <li className = "item-name" key={recipe.id}>{recipe.title}</li>
-                <a target="_blank" rel="noopener noreferrer" href= {`${baseURL}${name}-${id}`}>Check out this recipe on spoonacular</a>
-            </div> </li>)
-
+            <a className ="recipe-link" target="_blank" rel="noopener noreferrer" href= {`${baseURL}${name}-${id}`}>Check out this recipe on spoonacular</a>
+            </div> )
         })
         return (
         <div className="Inventory-List" >
         <h3 className ="view">Lets get cooking</h3>
-        <ul className='item-list' >{recipeDisplay}</ul>
-        <button
-        onClick={() => this.props.dispatch(getRecipes())
-        }
-        >get recipes</button>
+        <ul className='recipe-list' >{recipeDisplay}</ul>
         </div>
     )
 }

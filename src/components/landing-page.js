@@ -12,7 +12,7 @@ export function LandingPage(props) {
 
     return (
         <div className="login-form">
-        <section classname= "intro-text">
+        <section className= "intro-text">
             <p className ="intro">
                 Did you know that the average American throws away a pound of food per day? 
                 That adds up to about $2,200 a year that you could be putting in your bank account

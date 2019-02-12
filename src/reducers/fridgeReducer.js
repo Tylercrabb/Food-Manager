@@ -8,7 +8,7 @@ const initialState = {
     recipes:[],
     errorMessage: null,
     isLoading: false,
-    addingTo: null,
+    addingTo: "fridge",
     
 }
 

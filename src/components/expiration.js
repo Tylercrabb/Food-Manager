@@ -6,6 +6,7 @@ const moment = require('moment');
 class ExpirationItems extends Component{
 
     setExpiring(){
+       
         // loop through both inventory arrays and check to see if there are ingredients that will expire soon. 
         // .split('T')[0] formats the date string into simple year-month-day configuration for easy date math with momentjs
       let expiringItems = []

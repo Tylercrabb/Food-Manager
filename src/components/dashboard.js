@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import { Route, Link} from 'react-router-dom';
 import {loading, fetchFridgeInventory, fetchPantryInventory} from '../actions/index'
@@ -16,15 +16,17 @@ import ExpirationItems from './expiration'
 import fridge from '../images/fridge.png';
 import pantry from '../images/pantry.png';
 import plus from '../images/plus.png'
-import home from '../images/outline_home_black_48dp.png'
+import garbageCan from '../images/garbagecan.png'
 import oven from '../images/oven.png'
 import grocery from '../images/grocery.jpg'
 
 
 
-class Dashboard extends Component {
+export class Dashboard extends React.Component {
   componentWillMount(){
     this.props.dispatch(clearErrorMessage())
+    this.props.dispatch(fetchFridgeInventory())
+    this.props.dispatch(fetchPantryInventory())
   }
 
 
@@ -37,7 +39,7 @@ class Dashboard extends Component {
             <Link className="Fridge-logo" to="/fridge"><img src={fridge}  alt="logo" /></Link>
             <Link className="Pantry-logo" to ="/pantry"><img src={pantry}  alt="logo" /></Link>
             <Link className="Recipe-logo" to="/recipe"><img src={oven} alt ="oven"/></Link>
-            <Link className="Home-logo"to="/dashboard"><img src={home} alt ='home'/></Link>
+            <Link className="Garbagecan-logo"to="/dashboard"><img src={garbageCan} alt ='garbage'/></Link>
             <Link className="Add-logo" to="/add"><img src={plus} alt ='add'/></Link>
           </nav>
       <main>
