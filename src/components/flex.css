@@ -26,7 +26,6 @@ img{
 
 @media screen and (max-width: 659px) {
     .Inventory-List{
-        background-color:rgb(153, 189, 45);
         border-radius: 25px;
         width: 100%;
         text-align: center;  
@@ -35,11 +34,17 @@ img{
     .header-bar{
         width: 100%;
         height:100%;
-        margin-bottom: 5px;
-        margin-right: auto;
+        margin-bottom: 25px;
         background-color: #ECF9A7;
         border-radius: 25px;
-        text-align: center;
+        padding-left: 10px;
+        background-image: url('../images/grocery.jpg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        color: rgb(247, 245, 242);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        padding-bottom: 10px;
+        
     }
 
     .Dashboard{
@@ -73,6 +78,22 @@ img{
         width: 100%;
         font-weight: bold;
     }
+
+    .recipe-list{
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .recipe-card{
+        background-color: #ECF9A7;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border: 1px solid black;
+        border-radius:  15px;
+        width: 35%;
+        animation: fadeIn 0.5s linear;
+        animation-fill-mode: both;
+      }
   }
 
 
@@ -166,7 +187,8 @@ img{
         animation: fadeIn 0.5s linear;
         animation-fill-mode: both;
       }
-
+    
+    
 
 
     .Fridge-logo{
@@ -260,6 +282,7 @@ img{
   
 
 .recipe-picture{
+    padding-top: 10px;
     border-radius: 15px;
     height: 45%;
     width: 45%;
@@ -353,6 +376,9 @@ margin-right: auto;
     
 } 
 
+.form-input{
+    padding-bottom: 10px;
+}
 
 
 .login-form{

@@ -1,7 +1,8 @@
+import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, clearErrorMessage, loading, stopLoading} from '../actions'
 import React from 'react';
 import {connect} from 'react-redux';
 import '../recipe.css'
-import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, clearErrorMessage, loading, stopLoading} from '../actions'
+const shuffle = require('shuffle-array');
  export class RecipeViewer extends React.Component{
     componentWillMount(){
         this.props.dispatch(loading())

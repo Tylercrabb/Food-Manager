@@ -113,8 +113,7 @@ export class AddForm extends React.Component {
                         this.onSubmit(values)
                     )}>
                 
-                    <p>Add item to: {this.props.addingTo}</p>
-                
+                    <label htmlFor ="itemName">Add item to: {this.props.addingTo}</label>
                     <Field
                     name="itemName"
                     type="text"
@@ -130,6 +129,7 @@ export class AddForm extends React.Component {
                         validate={required}
                     />
                     <button
+                        className ="submit-button"
                         type="submit"
                         disabled={this.props.pristine || this.props.submitting}>
                         Add new Item

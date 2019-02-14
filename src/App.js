@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Route, withRouter, Switch} from 'react-router-dom';
 
-import './app.css'
+
 import HeaderBar from './components/header-bar';
 import RegistrationPage from './components/registration-page'
 import MainPage from './components/mainPage'

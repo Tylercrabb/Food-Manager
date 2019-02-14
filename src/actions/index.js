@@ -7,17 +7,17 @@ export const fetchFridgeSuccess = items => ({
     items
 });
 
+const shuffle = require('shuffle-array')
+
 export const fetchFridgeInventory = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(loading());
-    return fetch(`https://fridgeapp-backend.herokuapp.com/api/item`,{
-        method: 'GET',
+    return fetch(`https://fridgeapp-backend.herokuapp.com/api/item`, {
         headers: {
             // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`
         }
     })
-
         .then(res => {
             if (!res.ok) {
                 return Promise.reject(res.statusText);
@@ -27,7 +27,10 @@ export const fetchFridgeInventory = () => (dispatch, getState) => {
         .then(items => {
             dispatch(fetchFridgeSuccess(items));
             dispatch(stopLoading())
-        });
+        })
+        .catch(err => {
+            dispatch(setErrorMessage(err))
+        })
     }
 
 export const FETCH_PANTRY_SUCCESS = 'FETCH_PANTRY_SUCCESS';
@@ -41,7 +44,6 @@ export const fetchPantryInventory = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(loading())
     return fetch(`https://fridgeapp-backend.herokuapp.com/api/pantry`, {
-        method: 'GET',
         headers: {
             // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`
@@ -56,7 +58,10 @@ export const fetchPantryInventory = () => (dispatch, getState) => {
         .then(items => {
             dispatch(fetchPantrySuccess(items));
             dispatch(stopLoading())
-        });
+        })
+        .catch(err => {
+            dispatch(setErrorMessage(err))
+        })
     }
 
 export const DELETE_PANTRY_ITEM_SUCCESS = 'DELETE_PANTRY_ITEM_SUCCESS';
@@ -84,6 +89,9 @@ export const deletePantryItemSuccess = items => ({
             })
             .then( ()=> {
                 dispatch(deletePantryItemSuccess(item.id));
+            })
+            .catch(err => {
+                dispatch(setErrorMessage(err))
             })
         }
         
@@ -114,6 +122,9 @@ export const deleteFridgeItemSuccess = items => ({
             .then( ()=> {
                 dispatch(deleteFridgeItemSuccess(item.id));
             })
+            .catch(err => {
+                dispatch(setErrorMessage(err))
+            })
         }
 
 export const GET_RECIPES_SUCCESS = 'GET_RECIPES_SUCCESS';
@@ -133,9 +144,10 @@ export const getRecipeSuccess = results => ({
         let fridgeInvNames = getNames(getState().food.fridgeInventory) 
         let pantryInvNames = getNames(getState().food.pantryInventory) 
         let totalInv = fridgeInvNames.concat(pantryInvNames);
-        let query = totalInv.join('%2C');
+        
+        let query = shuffle(totalInv).join('%2C');
         dispatch(loading())
-       return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=${query}`, {
+       return fetch(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&ingredients=${query}`, {
             method: 'GET',
             
             headers: {
@@ -154,6 +166,9 @@ export const getRecipeSuccess = results => ({
                 }
                 dispatch(getRecipeSuccess(results))
                 dispatch(stopLoading())
+            })
+            .catch(err => {
+                dispatch(setErrorMessage(err))
             })
         }
 

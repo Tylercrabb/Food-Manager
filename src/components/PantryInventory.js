@@ -5,7 +5,7 @@ import plus from '../images/baseline_add_black_18dp.png'
 import {AddForm} from  './addForm'
 import {fetchPantryInventory, deletePantryItem, clearErrorMessage, setAdding} from '../actions/'
 // import './inventory.css'
- class PantryInventory extends Component{
+ export class PantryInventory extends Component{
     
     componentDidMount(){
         this.props.dispatch(fetchPantryInventory())
@@ -42,11 +42,8 @@ import {fetchPantryInventory, deletePantryItem, clearErrorMessage, setAdding} fr
         
         return (
         <div className ="Inventory-List">
-        <h3 className ="view">My Pantry
-        </h3>
-        
-        <ul className ='item-list'>{lists}</ul>
-        <Route  path ='/add' component={AddForm} />
+            <h3 className ="view">My Pantry</h3>
+            <ul className ='item-list'>{lists}</ul>
         </div>
     )}
 }

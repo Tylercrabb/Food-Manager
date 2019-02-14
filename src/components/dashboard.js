@@ -23,17 +23,16 @@ import grocery from '../images/grocery.jpg'
 
 
 export class Dashboard extends React.Component {
+  
   componentWillMount(){
     this.props.dispatch(clearErrorMessage())
     this.props.dispatch(fetchFridgeInventory())
     this.props.dispatch(fetchPantryInventory())
   }
 
-
   render() {
     
     return (
-      
       <section className="Dashboard">
           <nav className="App-header">
             <Link className="Fridge-logo" to="/fridge"><img src={fridge}  alt="logo" /></Link>

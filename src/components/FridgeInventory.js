@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {fetchFridgeInventory, deleteFridgeItem, clearErrorMessage, setAdding} from '../actions/'
 import grocery from '../images/grocery.jpg'
  
-class FridgeInventory extends Component{
+ export class FridgeInventory extends Component{
     
     componentDidMount(){
         this.props.dispatch(fetchFridgeInventory())  
@@ -28,7 +28,7 @@ class FridgeInventory extends Component{
             return (
                 <div className ="list-item">
                 <li className = "item-name" key={item.id}>{item.itemName}</li>
-                <p className = "expiration-date">This will expire on: {item.expirationDate.split('T')[0]}</p>
+                <p className = "expiration-date">This will expire on: {item.expirationDate.split('T')[0].split('-').slice(1).join('-')}</p>
                 <button 
                 key={index}
                 onClick={e => {
