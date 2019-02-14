@@ -4,7 +4,7 @@ import {loading, stopLoading} from './index'
 
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
-import { load } from 'dotenv';
+// import { load } from 'dotenv';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({

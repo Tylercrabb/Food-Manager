@@ -1,8 +1,8 @@
 import {fetchPantryInventory, fetchFridgeInventory, getRecipes, clearRecipes, clearErrorMessage, loading, stopLoading} from '../actions'
 import React from 'react';
 import {connect} from 'react-redux';
-import '../recipe.css'
-const shuffle = require('shuffle-array');
+
+
  export class RecipeViewer extends React.Component{
     componentWillMount(){
         this.props.dispatch(loading())
@@ -29,7 +29,7 @@ const shuffle = require('shuffle-array');
             let id = recipe.id;
             let name = recipe.title.replace(/ /g, '-')
             return (
-            <div id = {recipe.id} className ="recipe-card">
+            <div key = {recipe.id} className ="recipe-card">
             <img className='recipe-picture'  alt={recipe.title} src = {recipe.image}/>
             <li className = "item-name" key={recipe.id}>{recipe.title}</li>
             <a className ="recipe-link" target="_blank" rel="noopener noreferrer" href= {`${baseURL}${name}-${id}`}>Check out this recipe on spoonacular</a>
@@ -37,8 +37,8 @@ const shuffle = require('shuffle-array');
         })
         return (
         <div className="Inventory-List" >
-        <h3 className ="view">Lets get cooking</h3>
-        <ul className='recipe-list' >{recipeDisplay}</ul>
+            <h3 className ="view">Lets get cooking</h3>
+            <ul className='recipe-list' >{recipeDisplay}</ul>
         </div>
     )
 }

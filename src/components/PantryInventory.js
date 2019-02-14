@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Route, Link} from 'react-router-dom';
-import plus from '../images/baseline_add_black_18dp.png'
-import {AddForm} from  './addForm'
 import {fetchPantryInventory, deletePantryItem, clearErrorMessage, setAdding} from '../actions/'
-// import './inventory.css'
+
  export class PantryInventory extends Component{
     
     componentDidMount(){
@@ -28,7 +25,7 @@ import {fetchPantryInventory, deletePantryItem, clearErrorMessage, setAdding} fr
         }
         
         let lists = this.props.PantryInventory.map((item, index) => {
-            return (<div className = "list-item">
+            return (<div className = "list-item" key = {index}>
                 <li className = "item-name" key={item.id}>{item.itemName}</li>
                 <p className = "expiration-date">This expires: {item.expirationDate.split('T')[0].split('-').slice(1).join('-')}</p>
                 <button className="delete-button"

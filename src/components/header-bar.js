@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
-import {clearErrorMessage, clearExpiringItems, clearFridgeInventory, clearPantryInventory} from '../actions'
-// import './inventory.css'
+import {clearErrorMessage, clearFridgeInventory, clearPantryInventory} from '../actions'
+
 import './flex.css'
 export class HeaderBar extends React.Component {
     logOut() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Route, Link} from 'react-router-dom';
-import {loading, fetchFridgeInventory, fetchPantryInventory} from '../actions/index'
-import {clearErrorMessage, clearExpiringItems} from '../actions'
+import {fetchFridgeInventory, fetchPantryInventory} from '../actions/index'
+import {clearErrorMessage} from '../actions'
 // components
 import AddForm from './addForm';
 import requiresLogin from './requires-login'
@@ -18,7 +18,7 @@ import pantry from '../images/pantry.png';
 import plus from '../images/plus.png'
 import garbageCan from '../images/garbagecan.png'
 import oven from '../images/oven.png'
-import grocery from '../images/grocery.jpg'
+
 
 
 

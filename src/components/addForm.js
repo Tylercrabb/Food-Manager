@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {required, nonEmpty} from '../validators';
 import Input from './input';
-import './form.css'
+
 
 
 export class AddForm extends React.Component {
