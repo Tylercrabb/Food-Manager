@@ -94,7 +94,7 @@ export const deletePantryItemSuccess = items => ({
                 dispatch(setErrorMessage(err))
             })
         }
-        
+        // 
 
 export const DELETE_FRIDGE_ITEM_SUCCESS = 'DELETE_FRIDGE_ITEM_SUCCESS';
 
