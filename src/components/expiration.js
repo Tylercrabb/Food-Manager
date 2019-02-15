@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { fetchPantryInventory, fetchFridgeInventory, setExpiringItems} from '../actions';
 const moment = require('moment');
 
-class ExpirationItems extends Component{
+export class ExpirationItems extends Component{
 
     setExpiring(){
        

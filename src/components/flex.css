@@ -31,6 +31,10 @@ img{
         text-align: center;  
     }
 
+    .App-header{
+        padding-right: 10px;
+    }
+
     .header-bar{
         width: 100%;
         height:100%;
@@ -38,13 +42,13 @@ img{
         background-color: #ECF9A7;
         border-radius: 25px;
         padding-left: 10px;
+        padding-right: 10px;
         background-image: url('../images/grocery.jpg');
         background-size: 100%;
         background-repeat: no-repeat;
         color: rgb(247, 245, 242);
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         padding-bottom: 10px;
-        
     }
 
     .Dashboard{
@@ -90,10 +94,25 @@ img{
         margin-right: 5px;
         border: 1px solid black;
         border-radius:  15px;
-        width: 35%;
         animation: fadeIn 0.5s linear;
         animation-fill-mode: both;
       }
+
+      .list-item{
+        background-color: #ECF9A7;
+        margin-bottom: 10px;
+        margin-right: 15px;
+        border: 1px solid black;
+        border-radius:  15px;
+        width: 100%;
+        font-size: 30px;;
+        animation: fadeIn 0.5s linear;
+        animation-fill-mode: both;
+      }
+    
+    .item-list{
+        padding-left: 3px;
+    }
   }
 
 
@@ -175,6 +194,9 @@ img{
     .recipe-list{
         list-style: none;
         padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .recipe-card{
@@ -187,9 +209,6 @@ img{
         animation: fadeIn 0.5s linear;
         animation-fill-mode: both;
       }
-    
-    
-
 
     .Fridge-logo{
    
@@ -246,17 +265,7 @@ img{
     list-style: none;
 }
 
-.list-item{
-    background-color: #ECF9A7;
-    margin-bottom: 10px;
-    margin-right: 15px;
-    border: 1px solid black;
-    border-radius:  15px;
-    width: 35%;
-    font-size: 30px;;
-    animation: fadeIn 0.5s linear;
-    animation-fill-mode: both;
-  }
+
   
   
   @for $i from 1 through $total-items {
