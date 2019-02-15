@@ -6,9 +6,9 @@ Food manager helps you keep track of the food items in your pantry and fridge. I
 
 ### Screenshots
 
-![MainScreen](src\images\Screenshot(266).png "Main Screen")
+![MainScreen](src/images/Screenshot%20(266).png)
 
-![Recipe viewer](src\images\Screenshot(268).png "Recipe Viewer)
+![Recipe viewer](src/images/Screenshot%20(268).png)
 
 #### Tech Stack
  
