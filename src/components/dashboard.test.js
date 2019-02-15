@@ -18,10 +18,10 @@ describe('<Dashboard />', () => {
         shallow(<Dashboard dispatch= {dispatch}/>);
     });
 
-    it('the page correctly renders all links and routes', () => {
-        const wrapper = shallow(<Dashboard dispatch={dispatch}/>);
-        expect(wrapper).toMatchSnapshot()
-    });
+    // it('the page correctly renders all links and routes', () => {
+    //     const wrapper = shallow(<Dashboard dispatch={dispatch}/>);
+    //     expect(wrapper).toMatchSnapshot()
+    // });
 
     it('calls the life cycle methods when mounted', () => {
         const testLifeCycle = jest.fn();

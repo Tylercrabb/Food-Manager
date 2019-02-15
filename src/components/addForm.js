@@ -149,7 +149,7 @@ const mapStateToProps = state => ({
  })
 
 
- AddForm = connect(mapStateToProps)(AddForm);
+AddForm = connect(mapStateToProps)(AddForm);
 
 export default reduxForm({
     form: 'add',
