@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Route, Link} from 'react-router-dom';
 import {fetchFridgeInventory, fetchPantryInventory} from '../actions/index'
 import {clearErrorMessage} from '../actions'
+
 // components
 import AddForm from './addForm';
 import requiresLogin from './requires-login'
@@ -42,10 +43,10 @@ export class Dashboard extends React.Component {
             <Link className="Add-logo" to="/add"><img src={plus} alt ='add'/></Link>
           </nav>
       <main>
-        <Route  path='/fridge' component={FridgeInventory}/>
-        <Route  path='/pantry' component={PantryInventory}/>
-        <Route  path ='/add' component={AddForm} />
-        <Route  path ='/recipe' component={RecipeViewer} />
+        <Route path='/fridge' component={FridgeInventory}/>
+        <Route path='/pantry' component={PantryInventory}/>
+        <Route path ='/add' component={AddForm} />
+        <Route path ='/recipe' component={RecipeViewer} />
         <Route exact path ='/' component = {FridgeInventory} />
         <Route exact path ='/dashboard' component = {ExpirationItems} />
       </main>

@@ -112,7 +112,7 @@ export class AddForm extends React.Component {
                     onSubmit={this.props.handleSubmit(values =>
                         this.onSubmit(values)
                     )}>
-                
+
                     <label htmlFor ="itemName">Add item to: {this.props.addingTo}</label>
                     <Field
                     name="itemName"
@@ -134,7 +134,7 @@ export class AddForm extends React.Component {
                         disabled={this.props.pristine || this.props.submitting}>
                         Add new Item
                     </button>
-                    <Link className= "cancel" to={`/${this.props.addingTo}`}>
+                    <Link className= "cancel" to={this.props.addingTo === 'fridge'? '/fridge': '/pantry'}>
                     <button>Cancel</button>
                     </Link>
                 </form>
@@ -148,7 +148,8 @@ const mapStateToProps = state => ({
      addingTo: state.food.addingTo  
  })
 
-AddForm = connect(mapStateToProps)(AddForm);
+
+ AddForm = connect(mapStateToProps)(AddForm);
 
 export default reduxForm({
     form: 'add',
