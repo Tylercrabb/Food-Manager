@@ -1,3 +1,5 @@
+# Food Manager
+
 Food manager helps you keep track of the food items in your pantry and fridge. It lets you easily keep track of the expiration date of each food item, and suggests recipes to help you use up those stray ingredients. 
 
 ## App deployed at
